@@ -18,6 +18,11 @@ class Settings(BaseSettings):
         "postgresql+psycopg://lux_user:lux_password@postgres:5432/lux_ai"
     )
 
+    redis_host: str = "redis"
+    redis_port: int = 6379
+    redis_db: int = 0
+    redis_url: str = "redis://redis:6379/0"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

@@ -131,3 +131,25 @@ Check extension:
 ```sql
 SELECT extname FROM pg_extension WHERE extname = 'vector';
 ```
+
+## Redis
+
+This project uses Redis as the foundation for caching and future background job processing.
+
+Start services:
+
+```bash
+docker compose up --build
+```
+
+Check Redis:
+
+```bash
+docker exec -it lux-ai-redis redis-cli ping
+```
+
+Expected response:
+
+```text
+PONG
+```

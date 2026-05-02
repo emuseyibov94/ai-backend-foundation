@@ -6,7 +6,7 @@ from app.main import app
 client = TestClient(app)
 
 
-def test_health_check_returns_ok() -> None:
+def test_health_check_returns_expected_shape() -> None:
     response = client.get("/health")
 
     assert response.status_code == 200
@@ -17,5 +17,10 @@ def test_health_check_returns_ok() -> None:
     assert data["service"] == "lux-ai-document-intelligence"
     assert data["version"] == "0.1.0"
     assert data["environment"] == "local"
+
     assert "dependencies" in data
     assert "database" in data["dependencies"]
+    assert "redis" in data["dependencies"]
+
+    assert data["dependencies"]["database"] in ["ok", "unavailable"]
+    assert data["dependencies"]["redis"] in ["ok", "unavailable"]

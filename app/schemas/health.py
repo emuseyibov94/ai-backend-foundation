@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 class DependencyHealth(BaseModel):
     database: str
+    redis: str
 
 
 class HealthResponse(BaseModel):
