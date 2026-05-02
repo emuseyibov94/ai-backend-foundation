@@ -71,3 +71,35 @@ APP_VERSION=0.1.0
 APP_ENV=local
 LOG_LEVEL=INFO
 ```
+
+## Run with Docker
+
+Build and start the API:
+
+```bash
+docker compose up --build
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+Run tests inside Docker:
+
+```bash
+docker compose run --rm api pytest
+```
+
+Stop services:
+
+```bash
+docker compose down
+```
