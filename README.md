@@ -1,6 +1,6 @@
 # AI Backend Foundation
 
-Production-ready AI document intelligence platform foundation built with FastAPI, PostgreSQL + pgvector, Redis, Docker Compose, SQLAlchemy, and Alembic.
+Production-ready backend foundation for AI applications built with FastAPI, PostgreSQL + pgvector, Redis, Docker Compose, SQLAlchemy, and Alembic.
 
 ## Project Status
 
@@ -88,7 +88,7 @@ http://127.0.0.1:8001/health
 ```json
 {
   "status": "ok",
-  "service": "lux-ai-document-intelligence",
+  "service": "ai-backend-foundation",
   "version": "0.1.0",
   "environment": "local",
   "dependencies": {

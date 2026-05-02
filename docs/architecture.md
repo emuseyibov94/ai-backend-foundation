@@ -1,6 +1,6 @@
 # Architecture
 
-## Project 1: Backend Foundation
+## Project 1: AI Backend Foundation
 
 ```text
 Client

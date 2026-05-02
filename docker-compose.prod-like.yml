@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: lux-ai-api-prod-like
+    container_name: ai-backend-api-prod-like
     env_file:
       - .env
     ports:
@@ -23,7 +23,7 @@ services:
 
   postgres:
     image: pgvector/pgvector:pg16
-    container_name: lux-ai-postgres-prod-like
+    container_name: ai-backend-postgres-prod-like
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -41,7 +41,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: lux-ai-redis-prod-like
+    container_name: ai-backend-redis-prod-like
     ports:
       - "6380:6379"
     volumes:

@@ -15,7 +15,7 @@ def create_app() -> FastAPI:
 
     app = FastAPI(
         title=settings.app_name,
-        description="Production-ready AI document intelligence platform.",
+        description="Production-ready backend foundation for AI applications.",
         version=settings.app_version,
     )
 

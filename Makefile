@@ -34,16 +34,16 @@ test-docker:
 	docker compose run --rm api pytest
 
 shell-api:
-	docker exec -it lux-ai-api bash
+	docker exec -it ai-backend-api bash
 
 shell-db:
-	docker exec -it lux-ai-postgres bash
+	docker exec -it ai-backend-postgres bash
 
 db-psql:
-	docker exec -it lux-ai-postgres psql -U lux_user -d lux_ai
+	docker exec -it ai-backend-postgres psql -U ai_backend_user -d ai_backend_foundation
 
 redis-ping:
-	docker exec -it lux-ai-redis redis-cli ping
+	docker exec -it ai-backend-redis redis-cli ping
 
 migration:
 	docker compose run --rm api alembic revision --autogenerate -m "$(msg)"

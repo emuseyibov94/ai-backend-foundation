@@ -4,18 +4,18 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_name: str = "lux-ai-document-intelligence"
+    app_name: str = "ai-backend-foundation"
     app_version: str = "0.1.0"
     app_env: str = "local"
     log_level: str = "INFO"
 
-    postgres_user: str = "lux_user"
-    postgres_password: str = "lux_password"
-    postgres_db: str = "lux_ai"
+    postgres_user: str = "ai_backend_user"
+    postgres_password: str = "ai_backend_password"
+    postgres_db: str = "ai_backend_foundation"
     postgres_host: str = "postgres"
     postgres_port: int = 5432
     database_url: str = (
-        "postgresql+psycopg://lux_user:lux_password@postgres:5432/lux_ai"
+        "postgresql+psycopg://ai_backend_user:ai_backend_password@postgres:5432/ai_backend_foundation"
     )
 
     redis_host: str = "redis"
