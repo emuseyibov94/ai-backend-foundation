@@ -1,229 +1,130 @@
 # Lux AI Document Intelligence
 
-Production-ready AI document intelligence platform focused on financial, legal, and enterprise documents.
+Production-ready AI document intelligence platform foundation built with FastAPI, PostgreSQL + pgvector, Redis, Docker Compose, SQLAlchemy, and Alembic.
 
-## Current Features
+## Project Status
 
-- FastAPI application structure
-- Health check endpoint
-- Pydantic response schema
-- Basic test coverage
+Project 1: Production-Ready AI/ML Backend Foundation
 
-## Tech Stack
+Current capabilities:
 
-- Python
-- FastAPI
-- Pydantic
-- Pytest
+- FastAPI backend with clean layered architecture
+- Environment-based configuration
+- Structured logging baseline
+- Dockerized local development environment
+- PostgreSQL with pgvector
+- Redis dependency
+- Dependency-aware health endpoint
+- Docker healthchecks
+- SQLAlchemy models
+- Alembic migrations
+- Production-like Docker Compose runtime
 
-## Run Locally
-
-Create and activate a virtual environment:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the API:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-Open API docs:
+## Architecture
 
 ```text
-http://127.0.0.1:8000/docs
+Client / Browser / API Tool
+        |
+        v
+FastAPI API
+        |
+        |-- Health Service
+        |
+        |-- PostgreSQL + pgvector
+        |
+        |-- Redis
 ```
 
-Health check:
+## Runtime Modes
 
-```text
-http://127.0.0.1:8000/health
-```
+### Local Development Mode
 
-## Run Tests
-
-```bash
-pytest
-```
-
-## Configuration
-
-Create a `.env` file based on `.env.example`:
-
-```bash
-cp .env.example .env
-```
-
-Example:
-
-```env
-APP_NAME=lux-ai-document-intelligence
-APP_VERSION=0.1.0
-APP_ENV=local
-LOG_LEVEL=INFO
-```
-
-## Run with Docker
-
-Build and start the API:
-
-```bash
-docker compose up --build
-```
-
-Open:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-Health check:
-
-```text
-http://127.0.0.1:8000/health
-```
-
-Run tests inside Docker:
-
-```bash
-docker compose run --rm api pytest
-```
-
-Stop services:
-
-```bash
-docker compose down
-```
-
-## Database
-
-This project uses PostgreSQL with pgvector for future vector search capabilities.
-
-Start services:
-
-```bash
-docker compose up --build
-```
-
-Connect to PostgreSQL:
-
-```bash
-docker exec -it lux-ai-postgres psql -U lux_user -d lux_ai
-```
-
-Enable pgvector extension:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS vector;
-```
-
-Check extension:
-
-```sql
-SELECT extname FROM pg_extension WHERE extname = 'vector';
-```
-
-## Redis
-
-This project uses Redis as the foundation for caching and future background job processing.
-
-Start services:
-
-```bash
-docker compose up --build
-```
-
-Check Redis:
-
-```bash
-docker exec -it lux-ai-redis redis-cli ping
-```
-
-Expected response:
-
-```text
-PONG
-```
-
-## Make Commands
-
-Run API locally without Docker:
-
-```bash
-make dev
-```
-
-Run tests locally:
-
-```bash
-make test
-```
-
-Start Docker services:
+Uses live code mounting and auto-reload.
 
 ```bash
 make compose-up
 ```
 
-Start Docker services in background:
+API:
 
-```bash
-make compose-up-d
+```text
+http://127.0.0.1:8000
 ```
 
-Stop Docker services:
+Health:
 
-```bash
-make compose-down
+```text
+http://127.0.0.1:8000/health
 ```
 
-View logs:
+### Production-like Mode
+
+Uses immutable container behavior with no live volume mount and no reload.
 
 ```bash
-make logs
+make prod-like-up
 ```
 
-Run tests inside Docker:
+Apply migrations:
 
 ```bash
-make test-docker
+make prod-like-migrate
 ```
 
-Open API container shell:
+API:
 
-```bash
-make shell-api
+```text
+http://127.0.0.1:8001
 ```
 
-Open PostgreSQL shell:
+Health:
 
-```bash
-make db-psql
+```text
+http://127.0.0.1:8001/health
 ```
 
-Ping Redis:
+## Health Endpoint
+
+```json
+{
+  "status": "ok",
+  "service": "lux-ai-document-intelligence",
+  "version": "0.1.0",
+  "environment": "local",
+  "dependencies": {
+    "database": "ok",
+    "redis": "ok"
+  }
+}
+```
+
+## Tech Stack
+
+- Python 3.11
+- FastAPI
+- Pydantic / pydantic-settings
+- SQLAlchemy
+- Alembic
+- PostgreSQL
+- pgvector
+- Redis
+- Docker Compose
+- Pytest
+
+## Configuration
+
+Create `.env` from `.env.example`:
 
 ```bash
-make redis-ping
+cp .env.example .env
 ```
 
 ## Database Migrations
 
-This project uses Alembic for database schema migrations.
-
-Create a new migration:
+Create a migration:
 
 ```bash
-make migration msg="migration message"
+make migration msg="your migration message"
 ```
 
 Apply migrations:
@@ -232,9 +133,42 @@ Apply migrations:
 make migrate
 ```
 
-Current initial tables:
+Apply migrations in production-like mode:
+
+```bash
+make prod-like-migrate
+```
+
+## Useful Commands
+
+```bash
+make compose-up       # start local development stack
+make compose-down     # stop local development stack
+make test-docker      # run tests inside Docker
+make db-psql          # open PostgreSQL shell
+make redis-ping       # ping Redis
+make prod-like-up     # start production-like stack
+make prod-like-down   # stop production-like stack
+make prod-like-ps     # inspect production-like containers
+```
+
+## Current Database Tables
 
 - `documents`
 - `document_chunks`
+- `alembic_version`
 
-The `document_chunks.embedding` column uses pgvector for future semantic search.
+## Next Project
+
+Project 2 will build the first AI feature layer:
+
+Financial Document RAG Assistant v1
+
+Planned capabilities:
+
+- PDF upload
+- text extraction
+- chunking
+- embedding generation
+- pgvector semantic search
+- source-grounded RAG answers

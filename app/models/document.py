@@ -18,6 +18,14 @@ class Document(Base):
         default=uuid.uuid4,
     )
     filename: Mapped[str] = mapped_column(String(255), nullable=False)
+
+    status: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="uploaded",
+        server_default="uploaded",
+    )
+
     content_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
     storage_path: Mapped[str | None] = mapped_column(String(500), nullable=True)
 

@@ -1,4 +1,4 @@
-.PHONY: dev test compose-up compose-down compose-build logs logs-api logs-db logs-redis test-docker shell-api shell-db redis-ping db-psql migration migrate
+.PHONY: dev test compose-up compose-down compose-build logs logs-api logs-db logs-redis test-docker shell-api shell-db redis-ping db-psql migration migrate prod-like-up prod-like-up-d prod-like-down prod-like-logs prod-like-migrate prod-like-ps
 
 dev:
 	uvicorn app.main:app --reload
@@ -50,3 +50,21 @@ migration:
 
 migrate:
 	docker compose run --rm api alembic upgrade head
+
+prod-like-up:
+	docker compose -f docker-compose.prod-like.yml up --build
+
+prod-like-up-d:
+	docker compose -f docker-compose.prod-like.yml up -d --build
+
+prod-like-down:
+	docker compose -f docker-compose.prod-like.yml down
+
+prod-like-logs:
+	docker compose -f docker-compose.prod-like.yml logs -f
+
+prod-like-migrate:
+	docker compose -f docker-compose.prod-like.yml run --rm api alembic upgrade head
+
+prod-like-ps:
+	docker compose -f docker-compose.prod-like.yml ps
