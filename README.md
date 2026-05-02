@@ -153,3 +153,65 @@ Expected response:
 ```text
 PONG
 ```
+
+## Make Commands
+
+Run API locally without Docker:
+
+```bash
+make dev
+```
+
+Run tests locally:
+
+```bash
+make test
+```
+
+Start Docker services:
+
+```bash
+make compose-up
+```
+
+Start Docker services in background:
+
+```bash
+make compose-up-d
+```
+
+Stop Docker services:
+
+```bash
+make compose-down
+```
+
+View logs:
+
+```bash
+make logs
+```
+
+Run tests inside Docker:
+
+```bash
+make test-docker
+```
+
+Open API container shell:
+
+```bash
+make shell-api
+```
+
+Open PostgreSQL shell:
+
+```bash
+make db-psql
+```
+
+Ping Redis:
+
+```bash
+make redis-ping
+```
