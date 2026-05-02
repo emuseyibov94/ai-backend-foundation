@@ -9,6 +9,15 @@ class Settings(BaseSettings):
     app_env: str = "local"
     log_level: str = "INFO"
 
+    postgres_user: str = "lux_user"
+    postgres_password: str = "lux_password"
+    postgres_db: str = "lux_ai"
+    postgres_host: str = "postgres"
+    postgres_port: int = 5432
+    database_url: str = (
+        "postgresql+psycopg://lux_user:lux_password@postgres:5432/lux_ai"
+    )
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

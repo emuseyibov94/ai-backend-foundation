@@ -103,3 +103,31 @@ Stop services:
 ```bash
 docker compose down
 ```
+
+## Database
+
+This project uses PostgreSQL with pgvector for future vector search capabilities.
+
+Start services:
+
+```bash
+docker compose up --build
+```
+
+Connect to PostgreSQL:
+
+```bash
+docker exec -it lux-ai-postgres psql -U lux_user -d lux_ai
+```
+
+Enable pgvector extension:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+```
+
+Check extension:
+
+```sql
+SELECT extname FROM pg_extension WHERE extname = 'vector';
+```
