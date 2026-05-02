@@ -16,3 +16,4 @@ def test_health_check_returns_ok() -> None:
     assert data["status"] == "ok"
     assert data["service"] == "lux-ai-document-intelligence"
     assert data["version"] == "0.1.0"
+    assert data["environment"] == "local"

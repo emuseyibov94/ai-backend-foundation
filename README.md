@@ -54,3 +54,20 @@ http://127.0.0.1:8000/health
 ```bash
 pytest
 ```
+
+## Configuration
+
+Create a `.env` file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Example:
+
+```env
+APP_NAME=lux-ai-document-intelligence
+APP_VERSION=0.1.0
+APP_ENV=local
+LOG_LEVEL=INFO
+```
