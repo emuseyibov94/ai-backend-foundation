@@ -215,3 +215,26 @@ Ping Redis:
 ```bash
 make redis-ping
 ```
+
+## Database Migrations
+
+This project uses Alembic for database schema migrations.
+
+Create a new migration:
+
+```bash
+make migration msg="migration message"
+```
+
+Apply migrations:
+
+```bash
+make migrate
+```
+
+Current initial tables:
+
+- `documents`
+- `document_chunks`
+
+The `document_chunks.embedding` column uses pgvector for future semantic search.

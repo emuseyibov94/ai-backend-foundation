@@ -1,4 +1,4 @@
-.PHONY: dev test compose-up compose-down compose-build logs logs-api logs-db logs-redis test-docker shell-api shell-db redis-ping db-psql
+.PHONY: dev test compose-up compose-down compose-build logs logs-api logs-db logs-redis test-docker shell-api shell-db redis-ping db-psql migration migrate
 
 dev:
 	uvicorn app.main:app --reload
@@ -44,3 +44,9 @@ db-psql:
 
 redis-ping:
 	docker exec -it lux-ai-redis redis-cli ping
+
+migration:
+	docker compose run --rm api alembic revision --autogenerate -m "$(msg)"
+
+migrate:
+	docker compose run --rm api alembic upgrade head
