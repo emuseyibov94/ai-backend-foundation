@@ -1,4 +1,4 @@
-# Lux AI Document Intelligence
+# AI Backend Foundation
 
 Production-ready AI document intelligence platform foundation built with FastAPI, PostgreSQL + pgvector, Redis, Docker Compose, SQLAlchemy, and Alembic.
 
